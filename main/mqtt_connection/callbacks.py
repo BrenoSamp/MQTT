@@ -1,4 +1,4 @@
-from application.configs.broker_configs import mqtt_broker_configs
+from main.configs.broker_configs import mqtt_broker_configs
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
