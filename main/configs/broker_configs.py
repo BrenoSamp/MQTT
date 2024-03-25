@@ -1,7 +1,7 @@
 mqtt_broker_configs = {
     "HOST": "localhost",
     "PORT": 1883,
-    "CLIENT_NAME": "client_project",
     "KEEPALIVE": 60,
-    "TOPIC": "/messages"
+    "TEXT_EDITOR_TOPIC": "/text-editor",
+    "TEXT_EDITOR_RESPONSE_TOPIC": "/text-editor-response"
 }
