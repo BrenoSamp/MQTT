@@ -14,7 +14,7 @@ class Publisher:
         mqtt_client.on_message = on_message_text_editor_response
         mqtt_client.on_subscribe = on_subscribe_text_editor_response
         mqtt_client.connect(host=mqtt_broker_configs["HOST"], port=mqtt_broker_configs["PORT"])
-        mqtt_client.publish(topic=f'{mqtt_broker_configs['TEXT_EDITOR_TOPIC']}', payload=message)
+        mqtt_client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_TOPIC'], payload=message)
         mqtt_client.loop()
 
         while True: time.sleep(0.001)
