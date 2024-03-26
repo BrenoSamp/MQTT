@@ -1,6 +1,6 @@
 from main.configs.broker_configs import mqtt_broker_configs
 from main.mqtt_connection.callbacks import on_connect_text_editor_response, on_message_text_editor_response, on_subscribe_text_editor_response
-from mqtt_connection.mqtt_client_conection import MqttClientConnection
+from main.mqtt_connection.mqtt_client_conection import MqttClientConnection
 import time
 
 class Publisher:

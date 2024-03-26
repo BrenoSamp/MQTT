@@ -1,5 +1,4 @@
 from main.configs.broker_configs import mqtt_broker_configs
-from main.publishers.publisher import Publisher
 
 # Funções callbacks para tópico de edição de texto
 def on_connect_text_editor(client, userdata, flags, rc):
@@ -16,9 +15,8 @@ def on_subscribe_text_editor(client, userdata, mid, granted_qos):
 def on_message_text_editor(client, userdata, message):
     print('Mensagem recebida!\n')
     print(f'{client}\n')
-    print(f'Olá {message.payload}, recebemos sua mensagem\n')
-    publisher = Publisher()
-    publisher.sendToTextEditorResponseTopic()
+    message = f'Olá {message.payload}, recebemos sua mensagem\n'
+    client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'], payload=message)
 
 # Funções callbacks para tópico de resposta de edição de texto
 def on_connect_text_editor_response(client, userdata, flags, rc):
@@ -36,3 +34,4 @@ def on_message_text_editor_response(client, userdata, message):
     print('Mensagem recebida!\n')
     print(f'{client}\n')
     print(f'{message.payload}')
+    client.loopstop()

@@ -1,4 +1,4 @@
-import paho.mqtt.client as mqtt
+import paho.mqtt as mqtt
 
 class MqttClientConnection:
     def __init__(self, broker_ip: str, port: int, client_name:str, keepalive=60):
