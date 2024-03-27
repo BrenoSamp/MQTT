@@ -1,4 +1,4 @@
-import paho.mqtt_client as mqtt
+import paho.mqtt as mqtt
 from main.configs.broker_configs import mqtt_broker_configs
 from main.mqtt_connection.callbacks import on_connect_text_editor, on_message_text_editor, on_subscribe_text_editor
 from main.mqtt_connection.mqtt_client_conection import MqttClientConnection
