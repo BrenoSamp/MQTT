@@ -6,7 +6,6 @@
 
 - Breno Sampaio dos Santos
 
-![Alt Text](https://media.tenor.com/bkXBRh4F-tsAAAAM/aaa.gif)
 
 ## Instalando dependências
 
@@ -68,3 +67,9 @@ python3 main.py
 ## Referências
 
 - [Playlist MQTT com Python](https://www.youtube.com/playlist?list=PLAgbpJQADBGJpogSVWsROxO2_mAh6Y3C9)
+
+
+*Obrigado por ler até aqui.*
+<div style="text-align:center">
+<img src="https://media.tenor.com/bkXBRh4F-tsAAAAM/aaa.gif">
+</div>
