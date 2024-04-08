@@ -6,6 +6,8 @@
 
 - Breno Sampaio dos Santos
 
+![Alt Text](https://media.tenor.com/bkXBRh4F-tsAAAAM/aaa.gif)
+
 ## Instalando dependências
 
 *Para permitir o funcionamento da aplicação será necessário seguir alguns passos, selecione de acordo com seu sistema operacional para conseguir executar a funcionalidade*
