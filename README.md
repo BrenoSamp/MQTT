@@ -67,12 +67,3 @@ python3 main.py
 ## Referências
 
 - [Playlist MQTT com Python](https://www.youtube.com/playlist?list=PLAgbpJQADBGJpogSVWsROxO2_mAh6Y3C9)
-
-<p>
-*Obrigado por ler até aqui.*
-</p>
-
-
-<span style="display:block;text-align:center">
-<img src="https://media.tenor.com/bkXBRh4F-tsAAAAM/aaa.gif">
-</div>
