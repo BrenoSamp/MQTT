@@ -70,6 +70,6 @@ python3 main.py
 
 
 *Obrigado por ler até aqui.*
-<div style="text-align:center">
+<span style="display:block;text-align:center">
 <img src="https://media.tenor.com/bkXBRh4F-tsAAAAM/aaa.gif">
 </div>
