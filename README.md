@@ -43,9 +43,7 @@ Para mais informações acesse a [Documentação do pip](https://pip.pypa.io/en/
 
 ### Instalando bibliotecas com o pip
 
-Executar o seguinte coAlunos:
-
-Breno Sampaio dos Santosmando:
+Executar o seguinte comando:
 
 ```sh
 python3 pip -m install paho-mqtt
