@@ -58,6 +58,8 @@ python3 pip -m install paho-mqtt
 
 - Para Iniciar a aplicação basta executar o comando:
 
+*Obs: Deve ser executado na pasta raíz*
+
 ```sh
 python3 main.py
 ```
