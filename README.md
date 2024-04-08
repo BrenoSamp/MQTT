@@ -59,5 +59,5 @@ python3 pip -m install paho-mqtt
 - Para Iniciar a aplicação basta executar o comando:
 
 ```sh
-python3 sendText.py
+python3 main.py
 ```
