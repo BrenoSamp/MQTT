@@ -62,3 +62,7 @@ python3 pip -m install paho-mqtt
 ```sh
 python3 main.py
 ```
+
+## Referências
+
+- [Playlist MQTT com Python](https://www.youtube.com/playlist?list=PLAgbpJQADBGJpogSVWsROxO2_mAh6Y3C9)

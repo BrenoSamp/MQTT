@@ -5,8 +5,7 @@ def textEditor():
     name = input("Digite seu nome: ")
     Publisher.sendToTextEditorTopic(name)
 
-print("0 - Finalizar\n1 - Editar texto\n2 - Editar arquivo\n3- Realizar calculo\n")
-opcao = int(input('Digite a opção: '))
+opcao = None
 while(opcao != 0):
     print("0 - Finalizar\n1 - Editar texto\n2 - Editar arquivo\n3- Realizar calculo\n")
     opcao = int(input('Digite a opção: '))
