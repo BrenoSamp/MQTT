@@ -1,14 +1,14 @@
 # Seminário MQTT - XRSC09 SISTEMAS DISTRIBÚIDOS
 
-Projeto para a disciplina XRSC09 - SISTEMAS DISTRIBÚIDOS ministrada pelo professor Rafael de Magalhães Dias Frinhani
+**Projeto para a disciplina XRSC09 - SISTEMAS DISTRIBÚIDOS ministrada pelo professor Rafael de Magalhães Dias Frinhani**
 
-Alunos:
+**Alunos:**
 
 Breno Sampaio dos Santos
 
 ## Instalando dependências
 
-* Para permitir o funcionamento da aplicação será necessário seguir alguns passos, selecione de acordo com seu sistema operacional para conseguir executar a funcionalidade
+*Para permitir o funcionamento da aplicação será necessário seguir alguns passos, selecione de acordo com seu sistema operacional para conseguir executar a funcionalidade*
 
 ### Windows
 
@@ -24,7 +24,7 @@ Breno Sampaio dos Santos
 
 #### Instalando Python
 
-- Executar o seguinte comando no terminal:
+Executar o seguinte comando no terminal:
 ```sh
 sudo apt update
 sudo apt-get install python
@@ -32,15 +32,14 @@ sudo apt-get install python
 
 #### Instalando o pip
 
-- Caso o pip não venha instalado com o python, deve se seguir os passos:
-
-Para mais informações acesse a [Documentação do pip](https://pip.pypa.io/en/stable/installation/)
-
+Caso o pip não venha instalado com o python, deve se seguir os passos:
 
 ```sh
 wget https://bootstrap.pypa.io/get-pip.py
 python3 ./get-pip.py
 ```
+
+Para mais informações acesse a [Documentação do pip](https://pip.pypa.io/en/stable/installation/)
 
 ### Instalando bibliotecas com o pip
 
