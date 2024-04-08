@@ -4,7 +4,7 @@
 
 **Alunos:**
 
-Breno Sampaio dos Santos
+- Breno Sampaio dos Santos
 
 ## Instalando dependências
 
@@ -43,7 +43,9 @@ Para mais informações acesse a [Documentação do pip](https://pip.pypa.io/en/
 
 ### Instalando bibliotecas com o pip
 
-- Executar os seguintes comandos:
+Executar o seguinte coAlunos:
+
+Breno Sampaio dos Santosmando:
 
 ```sh
 python3 pip -m install paho-mqtt
