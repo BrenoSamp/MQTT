@@ -17,4 +17,6 @@ while(opcao != 0):
         textEditor()
     if (opcao == 2):
         fileEditor()
+    if (opcao == 3):
+        calculate()
 print('Até mais camarada!')
