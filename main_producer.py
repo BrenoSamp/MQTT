@@ -1,4 +1,3 @@
-from main.subscribers.subscriber import Subscriber
 from main.publishers.publisher import Publisher
 
 def textEditor():
@@ -8,6 +7,15 @@ def textEditor():
 def fileEditor():
     text = input("Digite o texto à ser adicionado no arquivo: ")
     Publisher.sendToFileEditorTopic(text)
+
+def calculate():
+    firstValue = input("Digite o primeiro valor a ser calculado: ")
+    secondValue = input("Digite o segundo valor a ser calculado: ")
+    payload = {
+        "first_value": firstValue,
+        "second_value": secondValue,
+    }
+    Publisher.sendToCalculateTopic(payload)
 
 opcao = None
 while(opcao != 0):
