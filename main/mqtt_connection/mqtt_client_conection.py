@@ -1,4 +1,4 @@
-import paho.mqtt as mqtt
+import paho.mqtt.client as mqtt
 
 class MqttClientConnection:
     def __init__(self, broker_ip: str, port: int, client_name:str, keepalive=60):
@@ -8,7 +8,7 @@ class MqttClientConnection:
         self.__keepalive = keepalive
 
     def start_connection(self):
-        mqtt_client = mqtt.Client(self.__client_name)
+        mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, self.__client_name)
         mqtt_client.connect(host=self.__broker_ip, port=self.__port, keepalive=self.__keepalive)
         self.__mqtt_client = mqtt_client
         return mqtt_client
