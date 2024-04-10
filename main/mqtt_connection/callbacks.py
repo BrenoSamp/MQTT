@@ -53,6 +53,7 @@ def on_message_file_editor(client, userdata, message):
     print(f'{client}\n')
     file = open('main/data/file.txt')
     file.writelines(f'{message.payload}')
+    file.close()
     message = f'O texto `{message.payload}` foi adicionado ao arquivo\n'
     client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=message)
 
@@ -78,12 +79,12 @@ def on_message_file_editor_response(client, userdata, message):
 def on_connect_calculate(client, userdata, flags, rc):
     if rc == 0:
         print(f'Cliente conectado com Sucesso')
-        client.subscribe(mqtt_broker_configs['FILE_EDITOR_TOPIC'])
+        client.subscribe(mqtt_broker_configs['CALCULATE_TOPIC'])
     else:
         print(f'Erro ao me conectar, codigo: {rc}')
 
 def on_subscribe_calculate(client, userdata, mid, granted_qos):
-    print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["FILE_EDITOR_TOPIC"]}\n')
+    print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["CALCULATE_TOPIC"]}\n')
     print(f'QOS: {granted_qos}')
 
 def on_message_calculate(client, userdata, message):
