@@ -16,37 +16,38 @@ class Publisher:
 
         mqttConection.start_connection(mqtt_client)
         mqtt_client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_TOPIC'], payload=message)
+        mqtt_client.subscribe(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'])
         mqtt_client.loop()
 
         while True: time.sleep(0.001)
 
-    def sendToTextEditorResponseTopic(message: str, mqtt_client):
-        mqtt_client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'], payload=message)
-
     ## FILE EDITOR METHODS
     def sendToFileEditorTopic(message: str):
-        mqtt_client = MqttClientConnection(
-            mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'file_editor_publisher', mqtt_broker_configs["KEEPALIVE"])
+        mqttConnection = MqttClientConnection(
+        mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'file_editor_publisher', mqtt_broker_configs["KEEPALIVE"])
+        mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'file_editor_publisher')
 
         mqtt_client.on_connect = on_connect_file_editor_response
         mqtt_client.on_message = on_message_file_editor_response
         mqtt_client.on_subscribe = on_subscribe_file_editor_response
-        mqtt_client.start_connection()
+        mqttConnection.start_connection(mqtt_client)
         mqtt_client.publish(topic=mqtt_broker_configs['FILE_EDITOR_TOPIC'], payload=message)
+        mqtt_client.subscribe(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'])
         mqtt_client.loop()
 
         while True: time.sleep(0.001)
 
     ## CALCULATE METHODS
     def sendToCalculateTopic(message: str):
-        mqtt_client = MqttClientConnection(
+        mqttConnection = MqttClientConnection(
             mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'calculate_publisher', mqtt_broker_configs["KEEPALIVE"])
-
+        mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'calculate_publisher')
         mqtt_client.on_connect = on_connect_calculate_response
         mqtt_client.on_message = on_message_calculate_response
         mqtt_client.on_subscribe = on_subscribe_calculate_response
-        mqtt_client.start_connection()
+        mqttConnection.start_connection(mqtt_client)
         mqtt_client.publish(topic=mqtt_broker_configs['CALCULATE_TOPIC'], payload=message)
+        mqtt_client.subscribe(topic=mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'])
         mqtt_client.loop()
 
         while True: time.sleep(0.001)
