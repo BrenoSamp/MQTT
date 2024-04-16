@@ -1,4 +1,5 @@
 from main.publishers.publisher import Publisher
+import time
 
 def textEditor():
     name = input("Digite seu nome: ")
@@ -19,6 +20,7 @@ def calculate():
 
 opcao = None
 while(opcao != 0):
+    time.sleep(0.001)
     print("0 - Finalizar\n1 - Editar texto\n2 - Editar arquivo\n3 - Realizar calculo\n")
     opcao = int(input('Digite a opção: '))
     if(opcao == 1):

@@ -2,7 +2,6 @@ from main.configs.broker_configs import mqtt_broker_configs
 from main.mqtt_connection.callbacks import on_connect_text_editor, on_message_text_editor, on_subscribe_text_editor, on_connect_file_editor, on_message_file_editor, on_subscribe_file_editor, on_connect_calculate, on_message_calculate, on_subscribe_calculate
 from main.mqtt_connection.mqtt_client_conection import MqttClientConnection
 import paho.mqtt.client as mqtt
-import time
 
 class Subscriber:
 
@@ -24,9 +23,7 @@ class Subscriber:
         mqtt_client_connection.start_connection(mqtt_client)
         mqtt_client.subscribe(topic=mqtt_broker_configs['TEXT_EDITOR_TOPIC'])
 
-        mqtt_client.loop()
-
-        while True: time.sleep(0.001)
+        mqtt_client.loop_start()
 
     ## FILE EDITOR METHODS
     @staticmethod
@@ -44,9 +41,7 @@ class Subscriber:
         mqtt_client_connection.start_connection(mqtt_client)
         mqtt_client.subscribe(topic=mqtt_broker_configs['FILE_EDITOR_TOPIC'])
 
-        mqtt_client.loop()
-
-        while True: time.sleep(0.001)
+        mqtt_client.loop_start()
 
     ## CALCULATE METHODS
     @staticmethod
@@ -64,6 +59,4 @@ class Subscriber:
         mqtt_client_connection.start_connection(mqtt_client)
         mqtt_client.subscribe(topic=mqtt_broker_configs['CALCULATE_TOPIC'])
 
-        mqtt_client.loop()
-
-        while True: time.sleep(0.001)
+        mqtt_client.loop_start()

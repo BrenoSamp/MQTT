@@ -56,12 +56,20 @@ python3 pip -m install paho-mqtt
 
 ## Execução
 
-- Para Iniciar a aplicação basta executar o comando:
+- Para Iniciar a aplicação **Cliente** basta executar o comando:
 
 *Obs: Deve ser executado na pasta raíz*
 
 ```sh
-python3 main.py
+python3 main_publisher.py
+```
+
+- Para Iniciar a aplicação **Servidor** basta executar o comando:
+
+*Obs: Deve ser executado na pasta raíz*
+
+```sh
+python3 main_subscriber.py
 ```
 
 ## Referências
