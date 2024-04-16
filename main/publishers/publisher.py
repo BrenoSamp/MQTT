@@ -2,6 +2,7 @@ from main.configs.broker_configs import mqtt_broker_configs
 from main.mqtt_connection.callbacks import on_connect_text_editor_response, on_message_text_editor_response, on_subscribe_text_editor_response, on_connect_file_editor_response, on_message_file_editor_response, on_subscribe_file_editor_response, on_connect_calculate_response, on_message_calculate_response, on_subscribe_calculate_response
 from main.mqtt_connection.mqtt_client_conection import MqttClientConnection
 import paho.mqtt.client as mqtt
+import json
 
 class Publisher:
     ## TEXT EDITOR METHODS
@@ -33,7 +34,7 @@ class Publisher:
         mqtt_client.loop_start()
 
     ## CALCULATE METHODS
-    def sendToCalculateTopic(message: str):
+    def sendToCalculateTopic(message: dict):
         mqttConnection = MqttClientConnection(
             mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'calculate_publisher', mqtt_broker_configs["KEEPALIVE"])
         mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'calculate_publisher')
@@ -42,5 +43,5 @@ class Publisher:
         mqtt_client.on_subscribe = on_subscribe_calculate_response
         mqttConnection.start_connection(mqtt_client)
         mqtt_client.subscribe(mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'])
-        mqtt_client.publish(topic=mqtt_broker_configs['CALCULATE_TOPIC'], payload=message)
+        mqtt_client.publish(topic=mqtt_broker_configs['CALCULATE_TOPIC'], payload=json.dumps(message))
         mqtt_client.loop_start()

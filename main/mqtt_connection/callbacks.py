@@ -49,7 +49,7 @@ def on_message_file_editor(client, userdata, message):
     file.writelines(f'{message.payload}')
     file.close()
     message = f'O texto `{message.payload}` foi adicionado ao arquivo\n'
-    client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=json.dumps(message))
+    client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=message)
     client.loop_stop()
 
 # Funções callbacks para tópico de resposta de edição de arquivo
