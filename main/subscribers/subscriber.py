@@ -23,7 +23,7 @@ class Subscriber:
         mqtt_client_connection.start_connection(mqtt_client)
         mqtt_client.subscribe(topic=mqtt_broker_configs['TEXT_EDITOR_TOPIC'])
 
-        mqtt_client.loop_start()
+        mqtt_client.loop_forever()
 
     ## FILE EDITOR METHODS
     @staticmethod
@@ -41,7 +41,7 @@ class Subscriber:
         mqtt_client_connection.start_connection(mqtt_client)
         mqtt_client.subscribe(topic=mqtt_broker_configs['FILE_EDITOR_TOPIC'])
 
-        mqtt_client.loop_start()
+        mqtt_client.loop_forever()
 
     ## CALCULATE METHODS
     @staticmethod
@@ -59,4 +59,4 @@ class Subscriber:
         mqtt_client_connection.start_connection(mqtt_client)
         mqtt_client.subscribe(topic=mqtt_broker_configs['CALCULATE_TOPIC'])
 
-        mqtt_client.loop_start()
+        mqtt_client.loop_forever()
