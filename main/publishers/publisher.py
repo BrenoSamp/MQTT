@@ -16,7 +16,7 @@ class Publisher:
         mqttConection.start_connection(mqtt_client)
         mqtt_client.subscribe(mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'])
         mqtt_client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_TOPIC'], payload=message)
-        mqtt_client.loop_start()
+        mqtt_client.loop_forever()
 
     ## FILE EDITOR METHODS
     def sendToFileEditorTopic(message: str):
@@ -30,7 +30,7 @@ class Publisher:
         mqttConnection.start_connection(mqtt_client)
         mqtt_client.subscribe(mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'])
         mqtt_client.publish(topic=mqtt_broker_configs['FILE_EDITOR_TOPIC'], payload=message)
-        mqtt_client.loop_start()
+        mqtt_client.loop_forever()
 
     ## CALCULATE METHODS
     def sendToCalculateTopic(message: str):
@@ -43,4 +43,4 @@ class Publisher:
         mqttConnection.start_connection(mqtt_client)
         mqtt_client.subscribe(mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'])
         mqtt_client.publish(topic=mqtt_broker_configs['CALCULATE_TOPIC'], payload=message)
-        mqtt_client.loop_start()
+        mqtt_client.loop_forever()
