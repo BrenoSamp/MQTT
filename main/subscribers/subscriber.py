@@ -21,8 +21,6 @@ class Subscriber:
         mqtt_client.on_message = on_message_text_editor
         mqtt_client.on_subscribe = on_subscribe_text_editor
         mqtt_client_connection.start_connection(mqtt_client)
-        mqtt_client.subscribe(topic=mqtt_broker_configs['TEXT_EDITOR_TOPIC'])
-
         mqtt_client.loop_forever()
 
     ## FILE EDITOR METHODS
@@ -39,8 +37,6 @@ class Subscriber:
         mqtt_client.on_message = on_message_file_editor
         mqtt_client.on_subscribe = on_subscribe_file_editor
         mqtt_client_connection.start_connection(mqtt_client)
-        mqtt_client.subscribe(topic=mqtt_broker_configs['FILE_EDITOR_TOPIC'])
-
         mqtt_client.loop_forever()
 
     ## CALCULATE METHODS
@@ -57,6 +53,4 @@ class Subscriber:
         mqtt_client.on_message = on_message_calculate
         mqtt_client.on_subscribe = on_subscribe_calculate
         mqtt_client_connection.start_connection(mqtt_client)
-        mqtt_client.subscribe(topic=mqtt_broker_configs['CALCULATE_TOPIC'])
-
         mqtt_client.loop_forever()
