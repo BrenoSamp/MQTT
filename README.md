@@ -71,19 +71,19 @@ python3 main_publisher.py
 **Servidor de alteração de texto**
 
 ```sh
-python3 subscribe_text_editor.py
+python3 subscriber_text_editor.py
 ```
 
 **Servidor de alteração de arquivo**
 
 ```sh
-python3 subscribe_file_editor.py
+python3 subscriber_file_editor.py
 ```
 
 **Servidor de calculo**
 
 ```sh
-python3 subscribe_calculate.py
+python3 subscriber_calculate.py
 ```
 
 ## Referências
