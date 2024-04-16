@@ -10,11 +10,9 @@ def on_connect_text_editor(client, userdata, flags, rc):
 
 def on_subscribe_text_editor(client, userdata, mid, granted_qos):
     print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["TEXT_EDITOR_TOPIC"]}\n')
-    print(f'QOS: {granted_qos}')
 
 def on_message_text_editor(client, userdata, message):
     print('Mensagem recebida!\n')
-    print(f'{client}\n')
     message = f'Olá {message.payload}, recebemos sua mensagem\n'
     client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'], payload=message)
     client.loop_stop()
@@ -28,11 +26,8 @@ def on_connect_text_editor_response(client, userdata, flags, rc):
 
 def on_subscribe_text_editor_response(client, userdata, mid, granted_qos):
     print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["TEXT_EDITOR_RESPONSE_TOPIC"]}\n')
-    print(f'QOS: {granted_qos}')
 
 def on_message_text_editor_response(client, userdata, message):
-    print('Mensagem recebida!\n')
-    print(f'{client}\n')
     print(f'{message.payload}')
     client.loop_stop()
 
@@ -46,11 +41,9 @@ def on_connect_file_editor(client, userdata, flags, rc):
 
 def on_subscribe_file_editor(client, userdata, mid, granted_qos):
     print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["FILE_EDITOR_TOPIC"]}\n')
-    print(f'QOS: {granted_qos}')
 
 def on_message_file_editor(client, userdata, message):
     print('Mensagem recebida!\n')
-    print(f'{client}\n')
     file = open('main/data/file.txt')
     file.writelines(f'{message.payload}')
     file.close()
@@ -67,11 +60,8 @@ def on_connect_file_editor_response(client, userdata, flags, rc):
 
 def on_subscribe_file_editor_response(client, userdata, mid, granted_qos):
     print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["FILE_EDITOR_RESPONSE_TOPIC"]}\n')
-    print(f'QOS: {granted_qos}')
 
 def on_message_file_editor_response(client, userdata, message):
-    print('Mensagem recebida!\n')
-    print(f'{client}\n')
     print(f'{message.payload}')
     client.loop_stop()
 
@@ -85,11 +75,9 @@ def on_connect_calculate(client, userdata, flags, rc):
 
 def on_subscribe_calculate(client, userdata, mid, granted_qos):
     print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["CALCULATE_TOPIC"]}\n')
-    print(f'QOS: {granted_qos}')
 
 def on_message_calculate(client, userdata, message):
     print('Mensagem recebida!\n')
-    print(f'{client}\n')
     firstValue = message.payload['first_value']
     secondValue = message.payload['second_value']
     soma = firstValue + secondValue
@@ -109,7 +97,6 @@ def on_connect_calculate_response(client, userdata, flags, rc):
 
 def on_subscribe_calculate_response(client, userdata, mid, granted_qos):
     print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["CALCULATE_RESPONSE_TOPIC"]}\n')
-    print(f'QOS: {granted_qos}')
 
 def on_message_calculate_response(client, userdata, message):
     print('Mensagem recebida!\n')
