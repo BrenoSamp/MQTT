@@ -44,7 +44,7 @@ def on_subscribe_file_editor(client, userdata, mid, granted_qos):
 
 def on_message_file_editor(client, userdata, message):
     print('Mensagem recebida!\n')
-    file = open('main/data/file.txt')
+    file = open('main/data/file.txt', 'w')
     file.writelines(f'{message.payload}')
     file.close()
     message = f'O texto `{message.payload}` foi adicionado ao arquivo\n'
@@ -100,6 +100,5 @@ def on_subscribe_calculate_response(client, userdata, mid, granted_qos):
 
 def on_message_calculate_response(client, userdata, message):
     print('Mensagem recebida!\n')
-    print(f'{client}\n')
     print(f'{message.payload}')
     client.loop_stop()
