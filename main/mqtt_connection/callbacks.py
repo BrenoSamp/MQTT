@@ -80,8 +80,8 @@ def on_subscribe_calculate(client, userdata, mid, granted_qos):
 def on_message_calculate(client, userdata, message):
     print('Mensagem recebida!\n')
     payload = json.loads(message.payload)
-    firstValue = payload['first_value']
-    secondValue = payload['second_value']
+    firstValue = float(payload['first_value'])
+    secondValue = float(payload['second_value'])
     soma = firstValue + secondValue
     subtracao = firstValue - secondValue
     divisao = firstValue / secondValue
