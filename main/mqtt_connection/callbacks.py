@@ -1,4 +1,5 @@
 from main.configs.broker_configs import mqtt_broker_configs
+import json
 
 # Funções callbacks para tópico de edição de texto
 def on_connect_text_editor(client, userdata, flags, rc):
@@ -48,7 +49,7 @@ def on_message_file_editor(client, userdata, message):
     file.writelines(f'{message.payload}')
     file.close()
     message = f'O texto `{message.payload}` foi adicionado ao arquivo\n'
-    client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=message)
+    client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=json.dumps(message))
     client.loop_stop()
 
 # Funções callbacks para tópico de resposta de edição de arquivo
@@ -78,8 +79,9 @@ def on_subscribe_calculate(client, userdata, mid, granted_qos):
 
 def on_message_calculate(client, userdata, message):
     print('Mensagem recebida!\n')
-    firstValue = message.payload['first_value']
-    secondValue = message.payload['second_value']
+    payload = json.loads(message.payload)
+    firstValue = payload['first_value']
+    secondValue = payload['second_value']
     soma = firstValue + secondValue
     subtracao = firstValue - secondValue
     divisao = firstValue / secondValue
