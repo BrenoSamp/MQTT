@@ -68,8 +68,22 @@ python3 main_publisher.py
 
 *Obs: Deve ser executado na pasta raíz*
 
+**Servidor de alteração de texto**
+
 ```sh
-python3 main_subscriber.py
+python3 subscribe_text_editor.py
+```
+
+**Servidor de alteração de arquivo**
+
+```sh
+python3 subscribe_file_editor.py
+```
+
+**Servidor de calculo**
+
+```sh
+python3 subscribe_calculate.py
 ```
 
 ## Referências
