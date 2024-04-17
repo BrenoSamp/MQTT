@@ -4,53 +4,33 @@ from main.mqtt_connection.mqtt_client_conection import MqttClientConnection
 import paho.mqtt.client as mqtt
 
 class Subscriber:
+    def __init__(self):
+        self.__mqtt_connection = MqttClientConnection(
+            mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'calculate_publisher', mqtt_broker_configs["KEEPALIVE"])
+        self.__mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
     ## TEXT EDITOR METHODS
-    @staticmethod
-    def subscribeOnTextEditTopic():
-        mqtt_client_connection = MqttClientConnection(
-            mqtt_broker_configs["HOST"],
-            mqtt_broker_configs["PORT"],
-            "text_editor_subscriber",
-            mqtt_broker_configs["KEEPALIVE"],
-            )
+    def subscribeOnTextEditTopic(self):
 
-        mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'text_editor_subscriber')
-
-        mqtt_client.on_connect = on_connect_text_editor
-        mqtt_client.on_message = on_message_text_editor
-        mqtt_client.on_subscribe = on_subscribe_text_editor
-        mqtt_client_connection.start_connection(mqtt_client)
-        mqtt_client.loop_forever()
+        self.__mqtt_client.on_connect = on_connect_text_editor
+        self.__mqtt_client.on_message = on_message_text_editor
+        self.__mqtt_client.on_subscribe = on_subscribe_text_editor
+        self.__mqtt_connection.start_connection(self.__mqtt_client)
+        self.__mqtt_client.loop_forever()
 
     ## FILE EDITOR METHODS
-    @staticmethod
-    def subscribeOnFileEditTopic():
-        mqtt_client_connection = MqttClientConnection(
-            mqtt_broker_configs["HOST"],
-            mqtt_broker_configs["PORT"],
-            "file_editor_subscriber",
-            mqtt_broker_configs["KEEPALIVE"],
-            )
-        mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'file_editor_subscriber')
-        mqtt_client.on_connect = on_connect_file_editor
-        mqtt_client.on_message = on_message_file_editor
-        mqtt_client.on_subscribe = on_subscribe_file_editor
-        mqtt_client_connection.start_connection(mqtt_client)
-        mqtt_client.loop_forever()
+    def subscribeOnFileEditTopic(self):
+        self.__mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'file_editor_subscriber')
+        self.__mqtt_client.on_connect = on_connect_file_editor
+        self.__mqtt_client.on_message = on_message_file_editor
+        self.__mqtt_client.on_subscribe = on_subscribe_file_editor
+        self.__mqtt_connection.start_connection(self.__mqtt_client)
+        self.__mqtt_client.loop_forever()
 
     ## CALCULATE METHODS
-    @staticmethod
-    def subscribeOnCalculateTopic():
-        mqtt_client_connection = MqttClientConnection(
-            mqtt_broker_configs["HOST"],
-            mqtt_broker_configs["PORT"],
-            "calculate_editor_subscriber",
-            mqtt_broker_configs["KEEPALIVE"],
-            )
-        mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'file_editor_subscriber')
-        mqtt_client.on_connect = on_connect_calculate
-        mqtt_client.on_message = on_message_calculate
-        mqtt_client.on_subscribe = on_subscribe_calculate
-        mqtt_client_connection.start_connection(mqtt_client)
-        mqtt_client.loop_forever()
+    def subscribeOnCalculateTopic(self):
+        self.__mqtt_client.on_connect = on_connect_calculate
+        self.__mqtt_client.on_message = on_message_calculate
+        self.__mqtt_client.on_subscribe = on_subscribe_calculate
+        self.__mqtt_connection.start_connection(self.__mqtt_client)
+        self.__mqtt_client.loop_forever()

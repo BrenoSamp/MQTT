@@ -15,7 +15,7 @@ def on_subscribe_text_editor(client, userdata, mid, granted_qos):
 def on_message_text_editor(client, userdata, message):
     print('Mensagem recebida!\n')
     message = f'Olá {message.payload}, recebemos sua mensagem\n'
-    client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'], payload=message)
+    client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'], payload=message, qos=2)
     client.loop_stop()
 
 # Funções callbacks para tópico de resposta de edição de texto
@@ -49,7 +49,7 @@ def on_message_file_editor(client, userdata, message):
     file.writelines(f'{message.payload}')
     file.close()
     message = f'O texto `{message.payload}` foi adicionado ao arquivo\n'
-    client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=message)
+    client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=message, qos=2)
     client.loop_stop()
 
 # Funções callbacks para tópico de resposta de edição de arquivo
@@ -87,7 +87,7 @@ def on_message_calculate(client, userdata, message):
     divisao = firstValue / secondValue
     multiplicacao = firstValue * secondValue
     message = f'Soma: {soma}\n Subtração: {subtracao}\n Divisão: {divisao}\n Multiplicação: {multiplicacao}'
-    client.publish(topic=mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'], payload=message)
+    client.publish(topic=mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'], payload=message, qos=2)
     client.loop_stop()
 
 # Funções callbacks para tópico de resposta de calculo

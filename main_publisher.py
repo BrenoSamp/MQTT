@@ -1,13 +1,15 @@
 from main.publishers.publisher import Publisher
 import time
 
+publisher = Publisher()
+
 def textEditor():
     name = input("Digite seu nome: ")
-    Publisher.sendToTextEditorTopic(name)
+    publisher.sendToTextEditorTopic(name)
 
 def fileEditor():
     text = input("Digite o texto à ser adicionado no arquivo: ")
-    Publisher.sendToFileEditorTopic(text)
+    publisher.sendToFileEditorTopic(text)
 
 def calculate():
     firstValue = input("Digite o primeiro valor a ser calculado: ")
@@ -16,7 +18,7 @@ def calculate():
         "first_value": firstValue,
         "second_value": secondValue,
     }
-    Publisher.sendToCalculateTopic(payload)
+    publisher.sendToCalculateTopic(payload)
 
 opcao = None
 while(opcao != 0):
