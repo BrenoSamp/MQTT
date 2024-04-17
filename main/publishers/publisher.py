@@ -7,7 +7,7 @@ import json
 class Publisher:
     def __init__(self):
         self.__mqtt_connection = MqttClientConnection(
-            mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'calculate_publisher', mqtt_broker_configs["KEEPALIVE"])
+            mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'publisher', mqtt_broker_configs["KEEPALIVE"])
         self.__mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
 

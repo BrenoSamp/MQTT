@@ -6,7 +6,7 @@ import paho.mqtt.client as mqtt
 class Subscriber:
     def __init__(self):
         self.__mqtt_connection = MqttClientConnection(
-            mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'calculate_publisher', mqtt_broker_configs["KEEPALIVE"])
+            mqtt_broker_configs["HOST"], mqtt_broker_configs["PORT"], 'subscriber', mqtt_broker_configs["KEEPALIVE"])
         self.__mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
     ## TEXT EDITOR METHODS

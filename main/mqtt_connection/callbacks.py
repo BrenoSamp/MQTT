@@ -14,7 +14,7 @@ def on_subscribe_text_editor(client, userdata, mid, granted_qos):
 
 def on_message_text_editor(client, userdata, message):
     print('Mensagem recebida!\n')
-    message = f'Olá {message.payload}, recebemos sua mensagem\n'
+    message = 'Olá' + message.payload + ', recebemos sua mensagem\n'
     client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'], payload=message, qos=2)
     client.loop_stop()
 
@@ -26,10 +26,10 @@ def on_connect_text_editor_response(client, userdata, flags, rc):
         print(f'Erro ao me conectar, codigo: {rc}')
 
 def on_subscribe_text_editor_response(client, userdata, mid, granted_qos):
-    print(f'Cliente se inscreveu no tópico: {mqtt_broker_configs["TEXT_EDITOR_RESPONSE_TOPIC"]}\n')
+    print('Cliente se inscreveu no tópico: ' + mqtt_broker_configs["TEXT_EDITOR_RESPONSE_TOPIC"] + '\n')
 
 def on_message_text_editor_response(client, userdata, message):
-    print(f'{message.payload}')
+    print(message.payload)
     client.loop_stop()
 
 # Funções callbacks para tópico de edição de arquivo
@@ -46,9 +46,9 @@ def on_subscribe_file_editor(client, userdata, mid, granted_qos):
 def on_message_file_editor(client, userdata, message):
     print('Mensagem recebida!\n')
     file = open('main/data/file.txt', 'w')
-    file.writelines(f'{message.payload}')
+    file.writelines(message.payload)
     file.close()
-    message = f'O texto `{message.payload}` foi adicionado ao arquivo\n'
+    message = 'O texto `' + message.payload + '` foi adicionado ao arquivo\n'
     client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=message, qos=2)
     client.loop_stop()
 
@@ -86,7 +86,7 @@ def on_message_calculate(client, userdata, message):
     subtracao = firstValue - secondValue
     divisao = firstValue / secondValue
     multiplicacao = firstValue * secondValue
-    message = f'Soma: {soma}\n Subtração: {subtracao}\n Divisão: {divisao}\n Multiplicação: {multiplicacao}'
+    message = "Soma: {} \nSubtração: {} \nDivisão: {} \nMultiplicação".format(soma, subtracao, divisao, multiplicacao)
     client.publish(topic=mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'], payload=message, qos=2)
     client.loop_stop()
 
@@ -102,5 +102,5 @@ def on_subscribe_calculate_response(client, userdata, mid, granted_qos):
 
 def on_message_calculate_response(client, userdata, message):
     print('Mensagem recebida!\n')
-    print(f'{message.payload}')
+    print(message.payload)
     client.loop_stop()

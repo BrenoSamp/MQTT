@@ -9,12 +9,3 @@ class MqttClientConnection:
 
     def start_connection(self, mqtt_client):
         mqtt_client.connect(host=self.__broker_ip, port=self.__port, keepalive=self.__keepalive)
-        self.__mqtt_client = mqtt_client
-
-    def end_connection(self):
-        try:
-            self.__mqtt_client.loop_stop
-            self.__mqtt_client.disconnect()
-            return True
-        except:
-            return False
