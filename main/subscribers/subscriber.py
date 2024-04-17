@@ -10,27 +10,27 @@ class Subscriber:
         self.__mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
     ## TEXT EDITOR METHODS
-    def subscribeOnTextEditTopic(self):
+    async def subscribeOnTextEditTopic(self):
 
         self.__mqtt_client.on_connect = on_connect_text_editor
         self.__mqtt_client.on_message = on_message_text_editor
         self.__mqtt_client.on_subscribe = on_subscribe_text_editor
-        self.__mqtt_connection.start_connection(self.__mqtt_client)
+        await  self.__mqtt_connection.start_connection(self.__mqtt_client)
         self.__mqtt_client.loop_forever()
 
     ## FILE EDITOR METHODS
-    def subscribeOnFileEditTopic(self):
+    async def subscribeOnFileEditTopic(self):
         self.__mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'file_editor_subscriber')
         self.__mqtt_client.on_connect = on_connect_file_editor
         self.__mqtt_client.on_message = on_message_file_editor
         self.__mqtt_client.on_subscribe = on_subscribe_file_editor
-        self.__mqtt_connection.start_connection(self.__mqtt_client)
+        await self.__mqtt_connection.start_connection(self.__mqtt_client)
         self.__mqtt_client.loop_forever()
 
     ## CALCULATE METHODS
-    def subscribeOnCalculateTopic(self):
+    async def subscribeOnCalculateTopic(self):
         self.__mqtt_client.on_connect = on_connect_calculate
         self.__mqtt_client.on_message = on_message_calculate
         self.__mqtt_client.on_subscribe = on_subscribe_calculate
-        self.__mqtt_connection.start_connection(self.__mqtt_client)
+        await self.__mqtt_connection.start_connection(self.__mqtt_client)
         self.__mqtt_client.loop_forever()
