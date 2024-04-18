@@ -32,3 +32,4 @@ while(opcao != 0):
     if (opcao == 3):
         calculate()
 print('Até mais camarada!')
+publisher.stop()
