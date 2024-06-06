@@ -16,14 +16,14 @@ class Publisher:
 
     ## REQUEST FILE METHODS
     def sendToRequestFileTopic(self, message: str):
-        print("Estou me inscrevendo no " + mqtt_broker_configs['REQUEST_FILE_RESPONSE_TOPIC'] + message)
+        #print("Estou me inscrevendo no " + mqtt_broker_configs['REQUEST_FILE_RESPONSE_TOPIC'] + message)
         self.__mqtt_client.subscribe(mqtt_broker_configs['REQUEST_FILE_RESPONSE_TOPIC'] + message)
-        print("Estou publicando no " + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message)
+        #print("Estou publicando no " + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message)
         self.__mqtt_client.publish(topic=mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message, payload=message, qos=2)
 
     ## CALCULATE METHODS
     def sendToUploadFileTopic(self, message: str):
-        print("Estou me inscrevendo no " + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message)
+        #print("Estou me inscrevendo no " + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message)
         self.__mqtt_client.subscribe(mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message)
 
     ## STOP METHODS

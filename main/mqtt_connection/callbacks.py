@@ -44,7 +44,6 @@ def on_connect_all_response(client, userdata, flags, rc):
         print(f'Erro ao me conectar, codigo: {rc}')
 
 def on_message_all_response(client, userdata, message):
-    # Configuração do diretório base da aplicação
     # Supondo que este arquivo está em "programa/main/mqtt_connection, volta 3 pastas para pegar o dir"
     dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
@@ -68,7 +67,7 @@ def on_message_all_response(client, userdata, message):
             # Obtém a extensão sem o ponto
             ext = os.path.splitext(filepath)[1][1:]
             # Publica o nome da extensão e o arquivo codificado no canal de response
-            print(f"Estou publicando no response/{tipo}/{nome}")
+            #print(f"Estou publicando no response/{tipo}/{nome}")
             client.publish(f"response/{tipo}/{nome}", f"{ext},{encoded_file.decode('utf-8')}")
     elif reqOuRes == "response":
         # Remove a assinatura do tópico de receber arquivos codificados
@@ -82,5 +81,5 @@ def on_message_all_response(client, userdata, message):
         with open(save_path, "wb") as file:
             file.write(base64.b64decode(encoded_file))
         # Assina o tópico para receber requisições futuras
-        print(f"Estou me inscrevendo no request/{tipo}/{nome}")
+        #print(f"Estou me inscrevendo no request/{tipo}/{nome}")
         client.subscribe(f"request/{tipo}/{nome}")

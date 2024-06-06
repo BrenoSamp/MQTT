@@ -4,5 +4,4 @@ mqtt_broker_configs = {
     "KEEPALIVE": 60,
     "REQUEST_FILE_TOPIC": "request/",
     "REQUEST_FILE_RESPONSE_TOPIC": "response/",
-    "ALL_TOPIC": "request/+",
 }
