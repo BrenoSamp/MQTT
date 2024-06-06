@@ -14,20 +14,14 @@ class Publisher:
         self.__mqtt_connection.start_connection(self.__mqtt_client)
         self.__mqtt_client.loop_start()
 
-    ## TEXT EDITOR METHODS
-    def sendToTextEditorTopic(self, message: str):
-        self.__mqtt_client.subscribe(mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'])
-        self.__mqtt_client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_TOPIC'], payload=message, qos=2)
-
-    ## FILE EDITOR METHODS
-    def sendToFileEditorTopic(self, message: str):
-        self.__mqtt_client.subscribe(mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'])
-        self.__mqtt_client.publish(topic=mqtt_broker_configs['FILE_EDITOR_TOPIC'], payload=message, qos=2)
+    ## REQUEST FILE METHODS
+    def sendToRequestFileTopic(self, message: str):
+        self.__mqtt_client.subscribe(mqtt_broker_configs['REQUEST_FILE_RESPONSE_TOPIC'] + message)
+        self.__mqtt_client.publish(topic=mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message, payload=message, qos=2)
 
     ## CALCULATE METHODS
-    def sendToCalculateTopic(self, message: dict):
-        self.__mqtt_client.subscribe(mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'])
-        self.__mqtt_client.publish(topic=mqtt_broker_configs['CALCULATE_TOPIC'], payload=json.dumps(message), qos=2)
+    def sendToUploadFileTopic(self, message: str):
+        self.__mqtt_client.subscribe(mqtt_broker_configs['REQUEST_FILE_TOPIC'] + message)
 
     ## STOP METHODS
     def stop(self):

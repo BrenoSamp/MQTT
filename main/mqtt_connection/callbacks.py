@@ -1,5 +1,8 @@
 from main.configs.broker_configs import mqtt_broker_configs
 import json
+import glob
+import base64
+import os
 
 # Funções callbacks para tópicos de requisições
 def on_connect_all(client, userdata, flags, rc):
@@ -27,21 +30,13 @@ def on_message_all(client, userdata, message):
         client.publish(topic=mqtt_broker_configs['CALCULATE_RESPONSE_TOPIC'], payload=message, qos=2)
         client.loop_stop()
 
-    elif topico == mqtt_broker_configs["FILE_EDITOR_TOPIC"]:
-        message_payload = message.payload.decode('utf-8')
-        with open('main/data/file.txt', 'a') as file:
-            file.write(message_payload + '\n')
-        message = 'O texto `' + message_payload + '` foi adicionado ao arquivo\n'
-        client.publish(topic=mqtt_broker_configs['FILE_EDITOR_RESPONSE_TOPIC'], payload=message, qos=2)
-        client.loop_stop()
-
-    elif topico == mqtt_broker_configs["TEXT_EDITOR_TOPIC"]:
+    elif topico == mqtt_broker_configs["REQUEST_FILE_TOPIC"]:
         message_payload = message.payload.decode('utf-8')
         message = 'Olá ' + message_payload + ', recebemos sua mensagem\n'
-        client.publish(topic=mqtt_broker_configs['TEXT_EDITOR_RESPONSE_TOPIC'], payload=message, qos=0)
+        client.publish(topic=mqtt_broker_configs['REQUEST_FILE_RESPONSE_TOPIC'], payload=message, qos=0)
         client.loop_stop()
 
-# Funções callbacks para tópicos de resposta
+# Funções callback
 def on_connect_all_response(client, userdata, flags, rc):
     if rc == 0:
         print(f'Cliente conectado com Sucesso')
@@ -49,8 +44,45 @@ def on_connect_all_response(client, userdata, flags, rc):
         print(f'Erro ao me conectar, codigo: {rc}')
 
 def on_message_all_response(client, userdata, message):
+    # Configuração do diretório base da aplicação
+    # Supondo que este arquivo está em "programa/main/mqtt_connection, volta 3 pastas para pegar o dir"
+    dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+    # Divide o tópico em partes
+    print(dir)
     topico = message.topic
-    print(f'Cliente se inscreveu no tópico: {topico}!\n')
-    message_payload = message.payload.decode('utf-8')
-    print(message_payload)
-    client.unsubscribe(topico)
+    reqOuRes = topico.split('/')[0]
+    tipo = topico.split('/')[1]
+    nome = topico.split('/')[2]
+
+    if reqOuRes == "request":
+        # Procura o arquivo no dir+tipo, com o nome e sendo de qualquer extensão
+        search_path = os.path.join(dir, tipo, nome + ".*")
+        file_list = glob.glob(search_path)
+
+        if file_list:
+            # Pega o primeiro arquivo que foi encontrado
+            filepath = file_list[0]
+            # Codifica esse arquivo em bytes para enviar via mensagem
+            with open(filepath, "rb") as file:
+                encoded_file = base64.b64encode(file.read())
+            # Obtém a extensão sem o ponto
+            ext = os.path.splitext(filepath)[1][1:]
+            # Publica o nome da extensão e o arquivo codificado no canal de response
+            client.publish(f"response/{tipo}/{nome}", f"{ext},{encoded_file.decode('utf-8')}")
+    elif reqOuRes == "response":
+        # Remove a assinatura do tópico de receber arquivos codificados
+        client.unsubscribe(topico)
+        # Separa a mensagem recebida em extensão e conteúdo
+        payload = message.payload.decode('utf-8')
+        ext, encoded_file = payload.split(',', 1)
+        # Escolhe o diretório para salvar
+        save_path = os.path.join(dir, tipo, nome + '.' + ext)
+        # Transforma e salva o arquivo com a extensão correta
+        with open(save_path, "wb") as file:
+            file.write(base64.b64decode(encoded_file))
+        # Assina o tópico para receber requisições futuras
+        client.subscribe(f"request/{tipo}/{nome}")
+
+def on_subscribe_all_response(client, userdata, mid, granted_qos):
+    print(f'Cliente se inscreveu no topico\n')
