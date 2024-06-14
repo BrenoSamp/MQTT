@@ -9,7 +9,6 @@ client = Publisher()
 def requestFile():
     print("1 - filme\n2 - animação\n3 - desenho\n4 - logomarca\n")
     fileType = int(input('Escolha uma das opções acima: '))
-    fileName = str(input('\nQual é o nome do arquivo que você procura?\n'))
     if(fileType == 1):
         fileTypeOption = "filme"
     if(fileType == 2):
@@ -18,12 +17,13 @@ def requestFile():
         fileTypeOption = "desenho"
     if(fileType == 4):
         fileTypeOption = "logomarca"
-    client.sendToRequestFileTopic(fileTypeOption + "/" + fileName)
+    fileName = str(input('\nQual é o nome do arquivo que você procura?\n'))
+    fileExt = str(input('\nQual é a extensão do arquivo que você procura?\n'))
+    client.sendToRequestFileTopic(fileTypeOption + "/" + fileName + "/" + fileExt)
 
 def uploadFile():
     print("1 - filme\n2 - animação\n3 - desenho\n4 - logomarca\n")
     fileType = int(input('Escolha uma das opções acima: '))
-    fileName = str(input('\nDigite o nome do arquivo para o upload:\n'))
     if(fileType == 1):
         fileTypeOption = "filme"
     if(fileType == 2):
@@ -32,7 +32,9 @@ def uploadFile():
         fileTypeOption = "desenho"
     if(fileType == 4):
         fileTypeOption = "logomarca"
-    client.sendToUploadFileTopic(fileTypeOption + "/" + fileName)
+    fileName = str(input('\nDigite o nome do arquivo para o upload:\n'))
+    fileExt = str(input('\nDigite a extensão do arquivo para o upload:\n'))
+    client.sendToUploadFileTopic(fileTypeOption + "/" + fileName + "/" + fileExt)
 
 opcao = None
 while(opcao != 0):
