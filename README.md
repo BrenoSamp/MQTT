@@ -1,25 +1,26 @@
-# Seminário MQTT - XRSC09 SISTEMAS DISTRIBÚIDOS
+# Seminario MQTT - XRSC09 SISTEMAS DISTRIBUIDOS
 
-**Projeto para a disciplina XRSC09 - SISTEMAS DISTRIBÚIDOS ministrada pelo professor Rafael de Magalhães Dias Frinhani**
+**Projeto para a disciplina XRSC09 - SISTEMAS DISTRIBUIDOS ministrada pelo professor Rafael de Magalhaes Dias Frinhani**
 
 **Alunos:**
 
 - Breno Sampaio dos Santos
+- Renan Siqueira de Oliveira Goncalves
 
 
-## Instalando dependências
+## Instalando dependencias
 
-*Para permitir o funcionamento da aplicação será necessário seguir alguns passos, selecione de acordo com seu sistema operacional para conseguir executar a funcionalidade*
+*Para permitir o funcionamento da aplicacao sera necessario seguir alguns passos, selecione de acordo com seu sistema operacional para conseguir executar a funcionalidade*
 
 ### Windows
 
 #### Instalando Python
 
-- Acessar o [Site oficial](https://www.python.org/downloads/) e fazer o download da versão mais recente
+- Acessar o [Site oficial](https://www.python.org/downloads/) e fazer o download da versao mais recente
 
 #### Instalando o pip
 
-- Caso o pip não venha instalado com o python, deve seguir os deve se seguir os passos segundo a [Documentação do pip](https://pip.pypa.io/en/stable/installation/)
+- Caso o pip nao venha instalado com o python, deve seguir os deve se seguir os passos segundo a [Documentacao do pip](https://pip.pypa.io/en/stable/installation/)
 
 ### Linux
 
@@ -33,14 +34,14 @@ sudo apt-get install python
 
 #### Instalando o pip
 
-Caso o pip não venha instalado com o python, deve se seguir os passos:
+Caso o pip nao venha instalado com o python, deve se seguir os passos:
 
 ```sh
 wget https://bootstrap.pypa.io/get-pip.py
 python3 ./get-pip.py
 ```
 
-Para mais informações acesse a [Documentação do pip](https://pip.pypa.io/en/stable/installation/)
+Para mais informacoes acesse a [Documentacao do pip](https://pip.pypa.io/en/stable/installation/)
 
 ### Instalando bibliotecas com o pip
 
@@ -52,40 +53,3 @@ python3 pip -m install paho-mqtt
 
 ## Broker Mosquitto
 
-*Adicionar informações do broker*
-
-## Execução
-
-- Para Iniciar a aplicação **Cliente** basta executar o comando:
-
-*Obs: Deve ser executado na pasta raíz*
-
-```sh
-python3 main_publisher.py
-```
-
-- Para Iniciar a aplicação **Servidor** basta executar o comando:
-
-*Obs: Deve ser executado na pasta raíz*
-
-**Servidor de alteração de texto**
-
-```sh
-python3 subscriber_text_editor.py
-```
-
-**Servidor de alteração de arquivo**
-
-```sh
-python3 subscriber_file_editor.py
-```
-
-**Servidor de calculo**
-
-```sh
-python3 subscriber_calculate.py
-```
-
-## Referências
-
-- [Playlist MQTT com Python](https://www.youtube.com/playlist?list=PLAgbpJQADBGJpogSVWsROxO2_mAh6Y3C9)
