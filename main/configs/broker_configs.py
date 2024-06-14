@@ -1,5 +1,5 @@
 mqtt_broker_configs = {
-    "HOST": "192.168.1.2",
+    "HOST": "localhost",
     "PORT": 1883,
     "KEEPALIVE": 60,
     "REQUEST_FILE_TOPIC": "request/",

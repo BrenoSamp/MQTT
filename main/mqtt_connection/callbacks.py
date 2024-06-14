@@ -93,5 +93,5 @@ def on_message_all_response(client, userdata, message):
             # Deleta as partes recebidas da variavel global
             del received_parts[file_key]
             # Inscreve no tópico de request para virar um fornecedor
-            print(f'Me inscrevi no tópico request/{tipo}/{nome}/{ext}')
-            client.subscribe(f"request/{tipo}/{nome}/{ext}")
+            #print(f'Me inscrevi no tópico request/{tipo}/{nome}/{ext}')
+            client.subscribe(f"request/{tipo}/{nome}/{ext}", qos=2)
