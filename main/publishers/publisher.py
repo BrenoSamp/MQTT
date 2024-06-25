@@ -22,14 +22,14 @@ class Publisher:
         message = {
             'client_id': self.client_id
         }
-        #print('Me inscrevi no tópico ' + mqtt_broker_configs['RESPONSE_FILE_TOPIC'] + topic + "/" + self.client_id)
+        print('Me inscrevi no tópico ' + mqtt_broker_configs['RESPONSE_FILE_TOPIC'] + topic + "/" + self.client_id)
         self.__mqtt_client.subscribe(mqtt_broker_configs['RESPONSE_FILE_TOPIC'] + topic + "/" + self.client_id, qos=2)
-        #print('Publiquei a mensagem ' + json.dumps(message) + ' no tópico ' + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + topic)
+        print('Publiquei a mensagem ' + json.dumps(message) + ' no tópico ' + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + topic)
         self.__mqtt_client.publish(topic=mqtt_broker_configs['REQUEST_FILE_TOPIC'] + topic, payload=json.dumps(message), qos=2)
 
     ## UPLOAD FILE METHODS
     def sendToUploadFileTopic(self, topic: str):
-        #print('Me inscrevi no tópico ' + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + topic)
+        print('Me inscrevi no tópico ' + mqtt_broker_configs['REQUEST_FILE_TOPIC'] + topic)
         self.__mqtt_client.subscribe(mqtt_broker_configs['REQUEST_FILE_TOPIC'] + topic, qos=2)
 
     ## STOP METHODS
